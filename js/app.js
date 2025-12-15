@@ -72,10 +72,23 @@ async function loadAllPages() {
 }
 
 /**
+ * Inicializa o sistema de spoilers
+ */
+function initializeSpoilers() {
+    document.addEventListener('click', (e) => {
+        const spoiler = e.target.closest('.spoiler');
+        if (spoiler) {
+            spoiler.classList.toggle('revealed');
+        }
+    });
+}
+
+/**
  * Inicializa a aplicação quando o DOM estiver pronto
  */
-document.addEventListener('DOMContentLoaded', () => {
-    loadAllPages();
+document.addEventListener('DOMContentLoaded', async () => {
+    await loadAllPages();
+    initializeSpoilers();
 });
 
 /**

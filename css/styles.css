@@ -41,6 +41,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     padding: 20px;
     min-height: 100vh;
 }
@@ -69,6 +70,8 @@ body {
     width: 210mm;
     height: 297mm;
     padding: 15mm 12mm;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* Ajustes de layout para páginas portrait */
@@ -413,12 +416,55 @@ h1 {
     height: 297mm !important;
 }
 
+/* Spoiler System */
+.spoiler {
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.3s ease;
+}
+
+.spoiler-content {
+    filter: blur(6px);
+    opacity: 0.5;
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.spoiler.revealed .spoiler-content {
+    filter: blur(0);
+    opacity: 1;
+}
+
+/* Estilo especial para células de tabela com spoiler */
+td.spoiler {
+    padding: 10px !important;
+}
+
+td.spoiler:hover:not(.revealed) {
+    background-color: rgba(0, 0, 0, 0.03);
+}
+
 /* PRINT SETTINGS */
 @media print {
     * {
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
         color-adjust: exact !important;
+    }
+
+    /* Revelar todos os spoilers ao imprimir */
+    .spoiler-content {
+        filter: none !important;
+        opacity: 1 !important;
+    }
+
+    .spoiler::before {
+        display: none !important;
+    }
+
+    .spoiler {
+        cursor: default !important;
     }
 
     html {
