@@ -1,0 +1,798 @@
+/* Russian Cheatsheet Styles */
+
+:root {
+    --color-friend: #27ae60;
+    --color-friend-bg: #e8f8f5;
+    --color-friend-light: #d5f4e6;
+    --color-friend-dark: #1e8449;
+
+    --color-enemy: #e74c3c;
+    --color-enemy-bg: #fadbd8;
+    --color-enemy-light: #f5cba7;
+    --color-enemy-dark: #c0392b;
+
+    --color-symbol: #3498db;
+    --color-symbol-bg: #d6eaf8;
+    --color-symbol-light: #aed6f1;
+    --color-symbol-dark: #2874a6;
+
+    --color-symbol2: #9b59b6;
+    --color-symbol2-bg: #e8daef;
+    --color-symbol2-light: #d7bde2;
+    --color-symbol2-dark: #7d3c98;
+
+    --color-special: #f39c12;
+    --color-special-bg: #fdebd0;
+    --color-special-light: #fad7a0;
+    --color-special-dark: #d68910;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+}
+
+body {
+    font-family: 'Inter', 'Montserrat', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+/* Configuração da Folha A4 - Páginas do Alfabeto (Landscape) */
+.page {
+    width: 297mm;
+    height: 210mm;
+    background: white;
+    padding: 12mm 15mm;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+/* Páginas de Vocabulário (Portrait) - 6 a 10 */
+.page:nth-child(6),
+.page:nth-child(7),
+.page:nth-child(8),
+.page:nth-child(9),
+.page:nth-child(10) {
+    width: 210mm;
+    height: 297mm;
+    padding: 15mm 12mm;
+}
+
+/* Ajustes de layout para páginas portrait */
+.page:nth-child(6) header,
+.page:nth-child(7) header,
+.page:nth-child(8) header,
+.page:nth-child(9) header,
+.page:nth-child(10) header {
+    padding-bottom: 15px;
+    margin-bottom: 18px;
+}
+
+.page:nth-child(6) .section-title,
+.page:nth-child(7) .section-title,
+.page:nth-child(8) .section-title,
+.page:nth-child(9) .section-title,
+.page:nth-child(10) .section-title {
+    margin: 18px 0 15px 0;
+}
+
+.page:nth-child(6) table,
+.page:nth-child(7) table,
+.page:nth-child(8) table,
+.page:nth-child(9) table,
+.page:nth-child(10) table {
+    margin-bottom: 18px;
+}
+
+.page:nth-child(6) .tip-box,
+.page:nth-child(7) .tip-box,
+.page:nth-child(8) .tip-box,
+.page:nth-child(9) .tip-box,
+.page:nth-child(10) .tip-box {
+    margin-top: 18px;
+}
+
+.page::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: linear-gradient(90deg, var(--page-color, #3498db) 0%, var(--page-color-dark, #2874a6) 100%);
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 12px;
+    margin-bottom: 15px;
+    border-bottom: 3px solid #ecf0f1;
+    position: relative;
+}
+
+h1 {
+    font-size: 24pt;
+    font-weight: 900;
+    text-transform: uppercase;
+    background: linear-gradient(
+        135deg,
+        var(--page-color, #2c3e50) 0%,
+        var(--page-color-dark, #1a252f) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.5px;
+}
+
+.legend {
+    font-size: 9pt;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    background: white;
+    border-radius: 20px;
+    border: 2px solid;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    border-radius: 50%;
+}
+
+/* Grid System */
+.section-title {
+    font-size: 16pt;
+    font-weight: 800;
+    margin: 12px 0 15px 0;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.5px;
+    position: relative;
+    padding-left: 15px;
+}
+
+.section-title::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 6px;
+    height: 100%;
+    border-radius: 3px;
+    background: var(--section-bg);
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+    flex-grow: 1;
+}
+
+/* Card Design */
+.card {
+    border: 2.5px solid;
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: white;
+    height: 100%;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card-top {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    position: relative;
+    background: linear-gradient(135deg, var(--card-bg) 0%, var(--card-bg-light) 100%);
+}
+
+.letter-big {
+    font-family: 'Roboto Slab', serif;
+    font-size: 36pt;
+    font-weight: 900;
+    line-height: 1;
+    color: var(--card-color);
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.05);
+    margin-bottom: 5px;
+}
+
+.letter-sound {
+    font-size: 9pt;
+    font-weight: 700;
+    color: var(--card-color-dark);
+    background: white;
+    padding: 4px 10px;
+    border-radius: 12px;
+    border: 2px solid var(--card-color);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.card-bottom {
+    padding: 8px 10px;
+    text-align: center;
+    background: white;
+    border-top: 2px solid rgba(0, 0, 0, 0.05);
+}
+
+.word-examples {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.word-example {
+    display: flex;
+    flex-direction: column;
+    padding: 4px 0;
+    border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
+}
+
+.word-example:last-child {
+    border-bottom: none;
+}
+
+.word-rus {
+    font-weight: 700;
+    font-size: 10pt;
+    color: #2c3e50;
+    margin-bottom: 1px;
+}
+
+.word-pron {
+    font-size: 8pt;
+    font-style: italic;
+    color: #7f8c8d;
+    margin-bottom: 2px;
+}
+
+.word-pt {
+    font-size: 8pt;
+    font-weight: 600;
+    color: var(--card-color);
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+/* Estilos Específicos por Categoria */
+
+/* Amigas */
+.friend {
+    border-color: var(--color-friend);
+    --card-bg: var(--color-friend-bg);
+    --card-bg-light: var(--color-friend-light);
+    --card-color: var(--color-friend);
+    --card-color-dark: var(--color-friend-dark);
+}
+.friend .section-color {
+    color: var(--color-friend);
+    --section-bg: var(--color-friend);
+}
+.page-friend {
+    --page-color: var(--color-friend);
+    --page-color-dark: var(--color-friend-dark);
+}
+
+/* Inimigas */
+.enemy {
+    border-color: var(--color-enemy);
+    --card-bg: var(--color-enemy-bg);
+    --card-bg-light: var(--color-enemy-light);
+    --card-color: var(--color-enemy);
+    --card-color-dark: var(--color-enemy-dark);
+}
+.enemy .section-color {
+    color: var(--color-enemy);
+    --section-bg: var(--color-enemy);
+}
+.page-enemy {
+    --page-color: var(--color-enemy);
+    --page-color-dark: var(--color-enemy-dark);
+}
+
+/* Símbolos */
+.symbol {
+    border-color: var(--color-symbol);
+    --card-bg: var(--color-symbol-bg);
+    --card-bg-light: var(--color-symbol-light);
+    --card-color: var(--color-symbol);
+    --card-color-dark: var(--color-symbol-dark);
+}
+.symbol .section-color {
+    color: var(--color-symbol);
+    --section-bg: var(--color-symbol);
+}
+.page-symbol {
+    --page-color: var(--color-symbol);
+    --page-color-dark: var(--color-symbol-dark);
+}
+
+/* Símbolos 2 */
+.symbol2 {
+    border-color: var(--color-symbol2);
+    --card-bg: var(--color-symbol2-bg);
+    --card-bg-light: var(--color-symbol2-light);
+    --card-color: var(--color-symbol2);
+    --card-color-dark: var(--color-symbol2-dark);
+}
+.symbol2 .section-color {
+    color: var(--color-symbol2);
+    --section-bg: var(--color-symbol2);
+}
+.page-symbol2 {
+    --page-color: var(--color-symbol2);
+    --page-color-dark: var(--color-symbol2-dark);
+}
+
+/* Especiais (sinais) */
+.special {
+    border-color: var(--color-special);
+    border-style: dashed;
+    --card-bg: var(--color-special-bg);
+    --card-bg-light: var(--color-special-light);
+    --card-color: var(--color-special);
+    --card-color-dark: var(--color-special-dark);
+}
+.page-special {
+    --page-color: var(--color-special);
+    --page-color-dark: var(--color-special-dark);
+}
+
+/* Footer */
+.page-footer {
+    margin-top: auto;
+    padding-top: 12px;
+    text-align: center;
+    font-size: 9pt;
+    color: #7f8c8d;
+    border-top: 2px solid #ecf0f1;
+    font-weight: 500;
+    font-style: italic;
+}
+
+.tip-box {
+    background: linear-gradient(135deg, #fff3cd 0%, #ffe69c 100%);
+    border: 2px solid #ffc107;
+    border-radius: 12px;
+    padding: 10px 15px;
+    margin-top: 12px;
+    font-size: 9pt;
+    color: #856404;
+    font-weight: 600;
+    box-shadow: 0 3px 10px rgba(255, 193, 7, 0.2);
+}
+
+.tip-box::before {
+    content: '💡 ';
+    font-size: 12pt;
+}
+
+/* Portrait Page Styling */
+.page-portrait {
+    width: 210mm !important;
+    height: 297mm !important;
+}
+
+/* PRINT SETTINGS */
+@media print {
+    * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        color-adjust: exact !important;
+    }
+
+    html {
+        width: 100%;
+        height: 100%;
+    }
+
+    body {
+        background: none !important;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .page {
+        margin: 0;
+        padding: 10mm 12mm;
+        box-shadow: none;
+        page-break-after: always;
+        page-break-inside: avoid;
+        border-radius: 0;
+        width: 297mm;
+        height: auto;
+        min-height: 210mm;
+        max-height: none;
+        overflow: visible;
+        position: relative;
+        display: block;
+        background: white;
+    }
+
+    .page:last-child {
+        page-break-after: auto;
+    }
+
+    /* Configuração de páginas */
+    @page {
+        size: A4 landscape;
+        margin: 0;
+    }
+
+    /* Aplicar orientações específicas */
+    .page:nth-child(1),
+    .page:nth-child(2),
+    .page:nth-child(3),
+    .page:nth-child(4),
+    .page:nth-child(5) {
+        width: 297mm;
+        height: auto;
+        min-height: 210mm;
+    }
+
+    /* Páginas 6-10: PORTRAIT (210mm x 297mm) */
+    .page:nth-child(6),
+    .page:nth-child(7),
+    .page:nth-child(8),
+    .page:nth-child(9),
+    .page:nth-child(10) {
+        width: 210mm !important;
+        height: auto !important;
+        min-height: 297mm !important;
+        padding: 12mm 10mm;
+    }
+
+    /* Ajustes gerais para páginas portrait (6-10) */
+    .page:nth-child(6) header,
+    .page:nth-child(7) header,
+    .page:nth-child(8) header,
+    .page:nth-child(9) header,
+    .page:nth-child(10) header {
+        padding-bottom: 8px;
+        margin-bottom: 10px;
+    }
+
+    .page:nth-child(6) h1,
+    .page:nth-child(7) h1,
+    .page:nth-child(8) h1,
+    .page:nth-child(9) h1,
+    .page:nth-child(10) h1 {
+        font-size: 18pt;
+    }
+
+    .page:nth-child(6) .legend,
+    .page:nth-child(7) .legend,
+    .page:nth-child(8) .legend,
+    .page:nth-child(9) .legend,
+    .page:nth-child(10) .legend {
+        font-size: 7.5pt;
+        gap: 8px;
+    }
+
+    .page:nth-child(6) .legend-item,
+    .page:nth-child(7) .legend-item,
+    .page:nth-child(8) .legend-item,
+    .page:nth-child(9) .legend-item,
+    .page:nth-child(10) .legend-item {
+        padding: 5px 10px;
+    }
+
+    .page:nth-child(6) .section-title,
+    .page:nth-child(7) .section-title,
+    .page:nth-child(8) .section-title,
+    .page:nth-child(9) .section-title,
+    .page:nth-child(10) .section-title {
+        font-size: 13pt;
+        margin: 10px 0 10px 0;
+    }
+
+    .page:nth-child(6) .page-footer,
+    .page:nth-child(7) .page-footer,
+    .page:nth-child(8) .page-footer,
+    .page:nth-child(9) .page-footer,
+    .page:nth-child(10) .page-footer {
+        font-size: 7.5pt;
+        padding-top: 8px;
+    }
+
+    /* Evitar quebras indesejadas */
+    table {
+        page-break-inside: auto;
+    }
+
+    tr {
+        page-break-inside: avoid;
+        page-break-after: auto;
+    }
+
+    .section-title {
+        page-break-after: avoid;
+    }
+
+    .tip-box {
+        page-break-inside: avoid;
+    }
+
+    .card {
+        page-break-inside: avoid;
+    }
+
+    .card:hover {
+        transform: none;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Garantir que grids de 2 colunas não quebrem */
+    div[style*='grid-template-columns: 1fr 1fr'] {
+        page-break-inside: avoid;
+    }
+
+    /* ===== AJUSTES ESPECÍFICOS POR PÁGINA (PORTRAIT) ===== */
+
+    /* Página 6 - Essenciais & Saudações (tabela única grande) */
+    .page:nth-child(6) table {
+        margin-bottom: 12px;
+    }
+
+    .page:nth-child(6) th {
+        padding: 9px !important;
+        font-size: 10pt !important;
+    }
+
+    .page:nth-child(6) td {
+        padding: 8px !important;
+        font-size: 9pt !important;
+    }
+
+    .page:nth-child(6) .tip-box {
+        font-size: 8pt;
+        padding: 8px 12px;
+        margin-top: 10px;
+    }
+
+    /* Página 7 - Números (grid 2 colunas) */
+    .page:nth-child(7) {
+        padding: 10mm 8mm !important;
+    }
+
+    .page:nth-child(7) div[style*='grid-template-columns: 1fr 1fr'] {
+        gap: 12px;
+    }
+
+    .page:nth-child(7) .section-title {
+        font-size: 12pt !important;
+        margin: 8px 0 8px 0 !important;
+    }
+
+    .page:nth-child(7) table {
+        margin-bottom: 8px;
+    }
+
+    .page:nth-child(7) th {
+        padding: 7px !important;
+        font-size: 9pt !important;
+    }
+
+    .page:nth-child(7) td {
+        padding: 5px !important;
+        font-size: 8pt !important;
+    }
+
+    .page:nth-child(7) .tip-box {
+        font-size: 7pt !important;
+        padding: 5px 8px !important;
+        margin-top: 8px !important;
+    }
+
+    /* Página 8 - Dias & Tempo (2 tabelas) */
+    .page:nth-child(8) table {
+        margin-bottom: 12px;
+    }
+
+    .page:nth-child(8) th {
+        padding: 9px !important;
+        font-size: 10pt !important;
+    }
+
+    .page:nth-child(8) td {
+        padding: 8px !important;
+        font-size: 9pt !important;
+    }
+
+    /* Página 9 - Perguntas & Cores (tabela + grid 2 colunas) */
+    .page:nth-child(9) table {
+        margin-bottom: 12px;
+    }
+
+    .page:nth-child(9) th {
+        padding: 9px !important;
+        font-size: 10pt !important;
+    }
+
+    .page:nth-child(9) td {
+        padding: 7px !important;
+        font-size: 8.5pt !important;
+    }
+
+    .page:nth-child(9) div[style*='grid-template-columns: 1fr 1fr'] {
+        gap: 10px;
+        margin-top: 0;
+    }
+
+    .page:nth-child(9) .tip-box {
+        font-size: 7.5pt !important;
+        padding: 6px 10px !important;
+        margin-top: 10px !important;
+    }
+
+    /* Página 10 - Família & Verbos (grid 2 colunas + box final) */
+    .page:nth-child(10) {
+        padding: 10mm 8mm !important;
+    }
+
+    .page:nth-child(10) div[style*='grid-template-columns: 1fr 1fr'] {
+        gap: 12px;
+    }
+
+    .page:nth-child(10) .section-title {
+        font-size: 12pt !important;
+        margin: 8px 0 8px 0 !important;
+    }
+
+    .page:nth-child(10) th {
+        padding: 7px !important;
+        font-size: 9pt !important;
+    }
+
+    .page:nth-child(10) td {
+        padding: 6px !important;
+        font-size: 8pt !important;
+    }
+
+    .page:nth-child(10) .tip-box {
+        font-size: 7pt !important;
+        padding: 6px 10px !important;
+        margin-top: 8px !important;
+    }
+
+    /* Box de congratulações na página 10 */
+    .page:nth-child(10) div[style*='border: 3px solid #27ae60'] {
+        padding: 8px 10px !important;
+        margin-top: 8px !important;
+    }
+
+    .page:nth-child(10) div[style*='border: 3px solid #27ae60'] h2 {
+        font-size: 11pt !important;
+        margin-bottom: 5px !important;
+    }
+
+    .page:nth-child(10) div[style*='border: 3px solid #27ae60'] p {
+        font-size: 7.5pt !important;
+        line-height: 1.3 !important;
+    }
+
+    /* Ajustes gerais de overflow e espaçamento */
+    header {
+        flex-shrink: 0;
+    }
+
+    .page-footer {
+        flex-shrink: 0;
+        margin-top: auto;
+    }
+
+    /* Garantir visibilidade do conteúdo */
+    .page,
+    .page *,
+    header,
+    .grid-container,
+    table,
+    .section-title,
+    .tip-box,
+    .card,
+    .card-top,
+    .card-bottom {
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+
+    .grid-container {
+        display: grid !important;
+    }
+
+    .page {
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    /* Garantir que tabelas não ultrapassem a página */
+    table {
+        display: table !important;
+        width: 100% !important;
+        max-width: 100%;
+        table-layout: auto;
+        border-collapse: collapse !important;
+    }
+
+    thead {
+        display: table-header-group !important;
+    }
+
+    tbody {
+        display: table-row-group !important;
+    }
+
+    tr {
+        display: table-row !important;
+    }
+
+    td,
+    th {
+        display: table-cell !important;
+    }
+
+    /* Ajustar quebra de texto em células */
+    td,
+    th {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+
+    /* Melhorar renderização de gradientes e bordas */
+    .card-top,
+    .page::before,
+    header,
+    table thead tr,
+    .tip-box {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    /* Garantir que imagens e ícones sejam renderizados */
+    img {
+        max-width: 100%;
+        page-break-inside: avoid;
+    }
+}
